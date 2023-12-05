@@ -1,0 +1,817 @@
+<div class="hoja-01">
+    <div class="columnas">
+        <div class="col-15" style="padding: 2px; background-color: rgb(46, 46, 46);">
+            <div class="botonVE" (click)="abrirVerEditar()">
+                <div class="botonVE-01">
+                    <p><b>Ver registros</b></p>
+                </div>
+                <div class="botonVE-02">
+                    <ion-icon id="icono-01" name="chevron-up-outline" class="abiertoVE-01"></ion-icon>
+                </div>
+            </div>
+            <div class="contenidoVE abiertoVE-02" id="contenidoVE-01">
+                <div class="opcion" id="hojaTodo">
+                    <p>Todas las categorias</p>
+                </div>
+                <div class="opcion" id="hojaAlimentacion">
+                    <ion-icon name="restaurant-outline"></ion-icon>
+                    <p>Alimentación</p>
+                </div>
+                <div class="opcion" id="hojaComunicacion">
+                    <ion-icon name="radio-outline"></ion-icon>
+                    <p>Comunicación</p>
+                </div>
+                <div class="opcion" id="hojaSalud">
+                    <ion-icon name="heart-circle-outline"></ion-icon>
+                    <p>Salud</p>
+                </div>
+                <div class="opcion" id="hojaDeudas">
+                    <ion-icon name="sad-outline"></ion-icon>
+                    <p>Deudas</p>
+                </div>
+                <div class="opcion" id="hojaEducacion">
+                    <ion-icon name="library-outline"></ion-icon>
+                    <p>Educación</p>
+                </div>
+                <div class="opcion" id="hojaEntretenimiento">
+                    <ion-icon name="color-palette-outline"></ion-icon>
+                    <p>Entretenimiento</p>
+                </div>
+                <div class="opcion" id="hojaIngresosVarios">
+                    <ion-icon name="cash-outline"></ion-icon>
+                    <p>Ingresos varios</p>
+                </div>
+                <div class="opcion" id="hojaVivienda">
+                    <ion-icon name="home-outline"></ion-icon>
+                    <p>Vivienda</p>
+                </div>
+                <div class="opcion" id="hojaVestimenta">
+                    <ion-icon name="shirt-outline"></ion-icon>
+                    <p>Vestimenta</p>
+                </div>
+                <div class="opcion" id="hojaTransporte">
+                    <ion-icon name="car-outline"></ion-icon>
+                    <p>Transporte</p>
+                </div>
+                <div class="opcion" id="hojaOtros">
+                    <ion-icon name="sparkles-sharp"></ion-icon>
+                    <p>Otros</p>
+                </div>
+            </div>
+
+            <div class="botonReg" (click)="abrirRegistrar()">
+                <div class="botonReg-01">
+                    <p><b>Registrar</b></p>
+                </div>
+                <div class="botonReg-02">
+                    <ion-icon id="icono-02" name="chevron-up-outline" class="abiertoReg-01"></ion-icon>
+                </div>
+            </div>
+            <div class="contenidoReg abiertoReg-02" id="contenidoReg-01">
+                <div class="opcion" id="hojaVoz" style="background-color: rgb(79, 70, 160);">
+                    <ion-icon name="mic-outline"></ion-icon>
+                    <p>Registro por voz</p>
+                </div>
+                <div class="opcion" id="hojaManual">
+                    <ion-icon name="calculator-outline"></ion-icon>
+                    <p>Registro manual</p>
+                </div>
+            </div>
+
+            <div class="botonRep" (click)="abrirReportes()">
+                <div class="botonRep-01">
+                    <p><b>Reportes</b></p>
+                </div>
+                <div class="botonRep-02">
+                    <ion-icon id="icono-03" name="chevron-up-outline" class="abiertoRep-01"></ion-icon>
+                </div>
+            </div>
+            <div class="contenidoRep abiertoRep-02" id="contenidoRep-01">
+                <div class="opcion" id="hojaDetallado">
+                    <ion-icon name="document-text-outline"></ion-icon>
+                    <p>Reporte detallado</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-85" style="margin-left: 10px; padding: 2px;">
+            <div class="hoja hojaTodo cerradoOPC">
+                <p style="margin-bottom: 20px;"><b>TODOS LOS GASTOS</b></p>
+                <p style="margin-bottom: 12px;">• Tabla:</p>
+                <div class="tablita">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th (click)="ordenarTabla('fecha_gasto')" style="cursor: pointer;">Fecha</th>
+                                <th (click)="ordenarTabla('nombre_categoria')" style="cursor: pointer;">Nombre de Categoría</th>
+                                <th (click)="ordenarTabla('nombre_gasto')" style="cursor: pointer;">Tipo de gasto</th>
+                                <th (click)="ordenarTabla('descripcion_gasto')" style="cursor: pointer;">Descripción del gasto</th>
+                                <th>Cantidad</th>
+                                <th>Precio x unidad</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tablita-contenido">
+                            <tr *ngFor="let gasto of gastos_input">
+                                <td>{{ gasto.fecha_gasto }}</td>
+                                <td>{{ gasto.nombre_categoria }}</td>
+                                <td>{{ gasto.nombre_gasto }}</td>
+                                <td>{{ gasto.descripcion_gasto }}</td>
+                                <td>{{ gasto.cantidad }}</td>
+                                <td>{{ gasto.monto_gasto }}</td>
+                                <td>{{ gasto.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 20px; margin-bottom: 12px;">• Graficos:</p>
+                <div class="columnas" style="margin-left: 5px; margin-right: 5px;">
+                    <div class="col-50">
+                        <div class="circular" style="display: flex; justify-content: center;">
+                            <div style="text-align: center;">
+                                <canvas id="Todo" width="300px" height="250px"></canvas>
+                            </div>
+                        </div>
+                        <div class="barras" style="display: flex; justify-content: center; margin-top: 40px;">
+                            <div style="text-align: center;">
+                                <canvas id="Todo1" width="500" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <p>• Total gastado: S/. {{ datas[0] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Mayor gasto: {{ datas[1] }}</p>
+                        <p style="margin-left: 20px;">→ Mayor valor gastado: S/. {{ datas[2] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con mayor gasto: {{ datas[3] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Menor gasto: {{ datas[4] }}</p>
+                        <p style="margin-left: 20px;">→ Menor valor gastado: S/. {{ datas[5] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con menor gasto: {{ datas[6] }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto: S/. {{ datas[7] }}</p>
+                        <p style="margin-top: 10px;">• Gasto por categoría de gasto:</p>
+                        <p *ngFor="let gasto of datas_n"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto por categoría de gasto:</p>
+                        <p *ngFor="let gasto of datas_n_p"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hoja hojaAlimentacion cerradoOPC">
+                <p style="margin-bottom: 20px;"><b>ALIMENTACIÓN</b></p>
+                <p style="margin-bottom: 12px;">• Tabla:</p>
+                <div class="tablita">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th (click)="ordenarTabla1('fecha_gasto')" style="cursor: pointer;">Fecha</th>
+                                <th (click)="ordenarTabla1('nombre_categoria')" style="cursor: pointer;">Nombre de Categoría</th>
+                                <th (click)="ordenarTabla1('nombre_gasto')" style="cursor: pointer;">Tipo de gasto</th>
+                                <th (click)="ordenarTabla1('descripcion_gasto')" style="cursor: pointer;">Descripción del gasto</th>
+                                <th>Cantidad</th>
+                                <th>Precio x unidad</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let gasto of gastos_filtrados">
+                                <td>{{ gasto.fecha_gasto }}</td>
+                                <td>{{ gasto.nombre_categoria }}</td>
+                                <td>{{ gasto.nombre_gasto }}</td>
+                                <td>{{ gasto.descripcion_gasto }}</td>
+                                <td>{{ gasto.cantidad }}</td>
+                                <td>{{ gasto.monto_gasto }}</td>
+                                <td>{{ gasto.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 20px; margin-bottom: 12px;">• Graficos:</p>
+                <div class="columnas" style="margin-left: 5px; margin-right: 5px;">
+                    <div class="col-50">
+                        <div class="circular" style="display: flex; justify-content: center;">
+                            <div style="text-align: center;">
+                                <canvas id="Alimentacion" width="300px" height="250px"></canvas>
+                            </div>
+                        </div>
+                        <div class="barras" style="display: flex; justify-content: center; margin-top: 40px;">
+                            <div style="text-align: center;">
+                                <canvas id="Alimentacion1" width="500" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <p>• Total gastado: S/. {{ datas[0] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Mayor gasto: {{ datas[1] }}</p>
+                        <p style="margin-left: 20px;">→ Mayor valor gastado: S/. {{ datas[2] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con mayor gasto: {{ datas[3] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Menor gasto: {{ datas[4] }}</p>
+                        <p style="margin-left: 20px;">→ Menor valor gastado: S/. {{ datas[5] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con menor gasto: {{ datas[6] }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto: S/. {{ datas[7] }}</p>
+                        <p style="margin-top: 10px;">• Gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n_p"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hoja hojaComunicacion cerradoOPC">
+                <p style="margin-bottom: 20px;"><b>COMUNICACIÓN</b></p>
+                <p style="margin-bottom: 12px;">• Tabla:</p>
+                <div class="tablita">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th (click)="ordenarTabla1('fecha_gasto')" style="cursor: pointer;">Fecha</th>
+                                <th (click)="ordenarTabla1('nombre_categoria')" style="cursor: pointer;">Nombre de Categoría</th>
+                                <th (click)="ordenarTabla1('nombre_gasto')" style="cursor: pointer;">Tipo de gasto</th>
+                                <th (click)="ordenarTabla1('descripcion_gasto')" style="cursor: pointer;">Descripción del gasto</th>
+                                <th>Cantidad</th>
+                                <th>Precio x unidad</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let gasto of gastos_filtrados">
+                                <td>{{ gasto.fecha_gasto }}</td>
+                                <td>{{ gasto.nombre_categoria }}</td>
+                                <td>{{ gasto.nombre_gasto }}</td>
+                                <td>{{ gasto.descripcion_gasto }}</td>
+                                <td>{{ gasto.cantidad }}</td>
+                                <td>{{ gasto.monto_gasto }}</td>
+                                <td>{{ gasto.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 20px; margin-bottom: 12px;">• Graficos:</p>
+                <div class="columnas" style="margin-left: 5px; margin-right: 5px;">
+                    <div class="col-50">
+                        <div class="circular" style="display: flex; justify-content: center;">
+                            <div style="text-align: center;">
+                                <canvas id="Comunicacion" width="300px" height="250px"></canvas>
+                            </div>
+                        </div>
+                        <div class="barras" style="display: flex; justify-content: center; margin-top: 40px;">
+                            <div style="text-align: center;">
+                                <canvas id="Comunicacion1" width="500" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <p>• Total gastado: S/. {{ datas[0] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Mayor gasto: {{ datas[1] }}</p>
+                        <p style="margin-left: 20px;">→ Mayor valor gastado: S/. {{ datas[2] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con mayor gasto: {{ datas[3] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Menor gasto: {{ datas[4] }}</p>
+                        <p style="margin-left: 20px;">→ Menor valor gastado: S/. {{ datas[5] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con menor gasto: {{ datas[6] }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto: S/. {{ datas[7] }}</p>
+                        <p style="margin-top: 10px;">• Gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n_p"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hoja hojaSalud cerradoOPC">
+                <p style="margin-bottom: 20px;"><b>SALUD</b></p>
+                <p style="margin-bottom: 12px;">• Tabla:</p>
+                <div class="tablita">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th (click)="ordenarTabla1('fecha_gasto')" style="cursor: pointer;">Fecha</th>
+                                <th (click)="ordenarTabla1('nombre_categoria')" style="cursor: pointer;">Nombre de Categoría</th>
+                                <th (click)="ordenarTabla1('nombre_gasto')" style="cursor: pointer;">Tipo de gasto</th>
+                                <th (click)="ordenarTabla1('descripcion_gasto')" style="cursor: pointer;">Descripción del gasto</th>
+                                <th>Cantidad</th>
+                                <th>Precio x unidad</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let gasto of gastos_filtrados">
+                                <td>{{ gasto.fecha_gasto }}</td>
+                                <td>{{ gasto.nombre_categoria }}</td>
+                                <td>{{ gasto.nombre_gasto }}</td>
+                                <td>{{ gasto.descripcion_gasto }}</td>
+                                <td>{{ gasto.cantidad }}</td>
+                                <td>{{ gasto.monto_gasto }}</td>
+                                <td>{{ gasto.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 20px; margin-bottom: 12px;">• Graficos:</p>
+                <div class="columnas" style="margin-left: 5px; margin-right: 5px;">
+                    <div class="col-50">
+                        <div class="circular" style="display: flex; justify-content: center;">
+                            <div style="text-align: center;">
+                                <canvas id="Salud" width="300px" height="250px"></canvas>
+                            </div>
+                        </div>
+                        <div class="barras" style="display: flex; justify-content: center; margin-top: 40px;">
+                            <div style="text-align: center;">
+                                <canvas id="Salud1" width="500" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <p>• Total gastado: S/. {{ datas[0] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Mayor gasto: {{ datas[1] }}</p>
+                        <p style="margin-left: 20px;">→ Mayor valor gastado: S/. {{ datas[2] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con mayor gasto: {{ datas[3] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Menor gasto: {{ datas[4] }}</p>
+                        <p style="margin-left: 20px;">→ Menor valor gastado: S/. {{ datas[5] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con menor gasto: {{ datas[6] }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto: S/. {{ datas[7] }}</p>
+                        <p style="margin-top: 10px;">• Gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n_p"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hoja hojaDeudas cerradoOPC">
+                <p style="margin-bottom: 20px;"><b>DEUDAS</b></p>
+                <p style="margin-bottom: 12px;">• Tabla:</p>
+                <div class="tablita">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th (click)="ordenarTabla1('fecha_gasto')" style="cursor: pointer;">Fecha</th>
+                                <th (click)="ordenarTabla1('nombre_categoria')" style="cursor: pointer;">Nombre de Categoría</th>
+                                <th (click)="ordenarTabla1('nombre_gasto')" style="cursor: pointer;">Tipo de gasto</th>
+                                <th (click)="ordenarTabla1('descripcion_gasto')" style="cursor: pointer;">Descripción del gasto</th>
+                                <th>Cantidad</th>
+                                <th>Precio x unidad</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let gasto of gastos_filtrados">
+                                <td>{{ gasto.fecha_gasto }}</td>
+                                <td>{{ gasto.nombre_categoria }}</td>
+                                <td>{{ gasto.nombre_gasto }}</td>
+                                <td>{{ gasto.descripcion_gasto }}</td>
+                                <td>{{ gasto.cantidad }}</td>
+                                <td>{{ gasto.monto_gasto }}</td>
+                                <td>{{ gasto.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 20px; margin-bottom: 12px;">• Graficos:</p>
+                <div class="columnas" style="margin-left: 5px; margin-right: 5px;">
+                    <div class="col-50">
+                        <div class="circular" style="display: flex; justify-content: center;">
+                            <div style="text-align: center;">
+                                <canvas id="Deudas" width="300px" height="250px"></canvas>
+                            </div>
+                        </div>
+                        <div class="barras" style="display: flex; justify-content: center; margin-top: 40px;">
+                            <div style="text-align: center;">
+                                <canvas id="Deudas1" width="500" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <p>• Total gastado: S/. {{ datas[0] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Mayor gasto: {{ datas[1] }}</p>
+                        <p style="margin-left: 20px;">→ Mayor valor gastado: S/. {{ datas[2] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con mayor gasto: {{ datas[3] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Menor gasto: {{ datas[4] }}</p>
+                        <p style="margin-left: 20px;">→ Menor valor gastado: S/. {{ datas[5] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con menor gasto: {{ datas[6] }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto: S/. {{ datas[7] }}</p>
+                        <p style="margin-top: 10px;">• Gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n_p"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hoja hojaEducacion cerradoOPC">
+                <p style="margin-bottom: 20px;"><b>EDUCACIÓN</b></p>
+                <p style="margin-bottom: 12px;">• Tabla:</p>
+                <div class="tablita">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th (click)="ordenarTabla1('fecha_gasto')" style="cursor: pointer;">Fecha</th>
+                                <th (click)="ordenarTabla1('nombre_categoria')" style="cursor: pointer;">Nombre de Categoría</th>
+                                <th (click)="ordenarTabla1('nombre_gasto')" style="cursor: pointer;">Tipo de gasto</th>
+                                <th (click)="ordenarTabla1('descripcion_gasto')" style="cursor: pointer;">Descripción del gasto</th>
+                                <th>Cantidad</th>
+                                <th>Precio x unidad</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let gasto of gastos_filtrados">
+                                <td>{{ gasto.fecha_gasto }}</td>
+                                <td>{{ gasto.nombre_categoria }}</td>
+                                <td>{{ gasto.nombre_gasto }}</td>
+                                <td>{{ gasto.descripcion_gasto }}</td>
+                                <td>{{ gasto.cantidad }}</td>
+                                <td>{{ gasto.monto_gasto }}</td>
+                                <td>{{ gasto.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 20px; margin-bottom: 12px;">• Graficos:</p>
+                <div class="columnas" style="margin-left: 5px; margin-right: 5px;">
+                    <div class="col-50">
+                        <div class="circular" style="display: flex; justify-content: center;">
+                            <div style="text-align: center;">
+                                <canvas id="Educacion" width="300px" height="250px"></canvas>
+                            </div>
+                        </div>
+                        <div class="barras" style="display: flex; justify-content: center; margin-top: 40px;">
+                            <div style="text-align: center;">
+                                <canvas id="Educacion1" width="500" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <p>• Total gastado: S/. {{ datas[0] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Mayor gasto: {{ datas[1] }}</p>
+                        <p style="margin-left: 20px;">→ Mayor valor gastado: S/. {{ datas[2] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con mayor gasto: {{ datas[3] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Menor gasto: {{ datas[4] }}</p>
+                        <p style="margin-left: 20px;">→ Menor valor gastado: S/. {{ datas[5] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con menor gasto: {{ datas[6] }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto: S/. {{ datas[7] }}</p>
+                        <p style="margin-top: 10px;">• Gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n_p"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hoja hojaEntretenimiento cerradoOPC">
+                <p style="margin-bottom: 20px;"><b>ENTRETENIMIENTO</b></p>
+                <p style="margin-bottom: 12px;">• Tabla:</p>
+                <div class="tablita">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th (click)="ordenarTabla1('fecha_gasto')" style="cursor: pointer;">Fecha</th>
+                                <th (click)="ordenarTabla1('nombre_categoria')" style="cursor: pointer;">Nombre de Categoría</th>
+                                <th (click)="ordenarTabla1('nombre_gasto')" style="cursor: pointer;">Tipo de gasto</th>
+                                <th (click)="ordenarTabla1('descripcion_gasto')" style="cursor: pointer;">Descripción del gasto</th>
+                                <th>Cantidad</th>
+                                <th>Precio x unidad</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let gasto of gastos_filtrados">
+                                <td>{{ gasto.fecha_gasto }}</td>
+                                <td>{{ gasto.nombre_categoria }}</td>
+                                <td>{{ gasto.nombre_gasto }}</td>
+                                <td>{{ gasto.descripcion_gasto }}</td>
+                                <td>{{ gasto.cantidad }}</td>
+                                <td>{{ gasto.monto_gasto }}</td>
+                                <td>{{ gasto.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 20px; margin-bottom: 12px;">• Graficos:</p>
+                <div class="columnas" style="margin-left: 5px; margin-right: 5px;">
+                    <div class="col-50">
+                        <div class="circular" style="display: flex; justify-content: center;">
+                            <div style="text-align: center;">
+                                <canvas id="Entretenimiento" width="300px" height="250px"></canvas>
+                            </div>
+                        </div>
+                        <div class="barras" style="display: flex; justify-content: center; margin-top: 40px;">
+                            <div style="text-align: center;">
+                                <canvas id="Entretenimiento1" width="500" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <p>• Total gastado: S/. {{ datas[0] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Mayor gasto: {{ datas[1] }}</p>
+                        <p style="margin-left: 20px;">→ Mayor valor gastado: S/. {{ datas[2] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con mayor gasto: {{ datas[3] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Menor gasto: {{ datas[4] }}</p>
+                        <p style="margin-left: 20px;">→ Menor valor gastado: S/. {{ datas[5] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con menor gasto: {{ datas[6] }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto: S/. {{ datas[7] }}</p>
+                        <p style="margin-top: 10px;">• Gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n_p"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hoja hojaIngresosVarios cerradoOPC">
+                <p style="margin-bottom: 20px;"><b>INGRESOS VARIADOS</b></p>
+                <p style="margin-bottom: 12px;">• Tabla:</p>
+                <div class="tablita">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th (click)="ordenarTabla1('fecha_gasto')" style="cursor: pointer;">Fecha</th>
+                                <th (click)="ordenarTabla1('nombre_categoria')" style="cursor: pointer;">Nombre de Categoría</th>
+                                <th (click)="ordenarTabla1('nombre_gasto')" style="cursor: pointer;">Tipo de ingreso</th>
+                                <th (click)="ordenarTabla1('descripcion_gasto')" style="cursor: pointer;">Descripción del ingreso</th>
+                                <th>Cantidad</th>
+                                <th>Ingreso x unidad</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let gasto of gastos_filtrados">
+                                <td>{{ gasto.fecha_gasto }}</td>
+                                <td>{{ gasto.nombre_categoria }}</td>
+                                <td>{{ gasto.nombre_gasto }}</td>
+                                <td>{{ gasto.descripcion_gasto }}</td>
+                                <td>{{ gasto.cantidad }}</td>
+                                <td>{{ gasto.monto_gasto }}</td>
+                                <td>{{ gasto.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 20px; margin-bottom: 12px;">• Graficos:</p>
+                <div class="columnas" style="margin-left: 5px; margin-right: 5px;">
+                    <div class="col-50">
+                        <div class="circular" style="display: flex; justify-content: center;">
+                            <div style="text-align: center;">
+                                <canvas id="Ingresos varios" width="300px" height="250px"></canvas>
+                            </div>
+                        </div>
+                        <div class="barras" style="display: flex; justify-content: center; margin-top: 40px;">
+                            <div style="text-align: center;">
+                                <canvas id="Ingresos varios1" width="500" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <p>• Total ganado: S/. {{ datas[0] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Mayor ganancia: {{ datas[1] }}</p>
+                        <p style="margin-left: 20px;">→ Mayor valor ganado: S/. {{ datas[2] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con mayor ganancia: {{ datas[3] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Menor ganancia: {{ datas[4] }}</p>
+                        <p style="margin-left: 20px;">→ Menor valor ganado: S/. {{ datas[5] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con menor ganancia: {{ datas[6] }}</p>
+                        <p style="margin-top: 10px;">• Promedio de ganancias: S/. {{ datas[7] }}</p>
+                        <p style="margin-top: 10px;">• Ganancia por tipo:</p>
+                        <p *ngFor="let gasto of datas_n"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                        <p style="margin-top: 10px;">• Promedio de ganancia por tipo:</p>
+                        <p *ngFor="let gasto of datas_n_p"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hoja hojaVivienda cerradoOPC">
+                <p style="margin-bottom: 20px;"><b>VIVIENDA</b></p>
+                <p style="margin-bottom: 12px;">• Tabla:</p>
+                <div class="tablita">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th (click)="ordenarTabla1('fecha_gasto')" style="cursor: pointer;">Fecha</th>
+                                <th (click)="ordenarTabla1('nombre_categoria')" style="cursor: pointer;">Nombre de Categoría</th>
+                                <th (click)="ordenarTabla1('nombre_gasto')" style="cursor: pointer;">Tipo de gasto</th>
+                                <th (click)="ordenarTabla1('descripcion_gasto')" style="cursor: pointer;">Descripción del gasto</th>
+                                <th>Cantidad</th>
+                                <th>Precio x unidad</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let gasto of gastos_filtrados">
+                                <td>{{ gasto.fecha_gasto }}</td>
+                                <td>{{ gasto.nombre_categoria }}</td>
+                                <td>{{ gasto.nombre_gasto }}</td>
+                                <td>{{ gasto.descripcion_gasto }}</td>
+                                <td>{{ gasto.cantidad }}</td>
+                                <td>{{ gasto.monto_gasto }}</td>
+                                <td>{{ gasto.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 20px; margin-bottom: 12px;">• Graficos:</p>
+                <div class="columnas" style="margin-left: 5px; margin-right: 5px;">
+                    <div class="col-50">
+                        <div class="circular" style="display: flex; justify-content: center;">
+                            <div style="text-align: center;">
+                                <canvas id="Vivienda" width="300px" height="250px"></canvas>
+                            </div>
+                        </div>
+                        <div class="barras" style="display: flex; justify-content: center; margin-top: 40px;">
+                            <div style="text-align: center;">
+                                <canvas id="Vivienda1" width="500" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <p>• Total gastado: S/. {{ datas[0] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Mayor gasto: {{ datas[1] }}</p>
+                        <p style="margin-left: 20px;">→ Mayor valor gastado: S/. {{ datas[2] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con mayor gasto: {{ datas[3] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Menor gasto: {{ datas[4] }}</p>
+                        <p style="margin-left: 20px;">→ Menor valor gastado: S/. {{ datas[5] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con menor gasto: {{ datas[6] }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto: S/. {{ datas[7] }}</p>
+                        <p style="margin-top: 10px;">• Gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n_p"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hoja hojaVestimenta cerradoOPC">
+                <p style="margin-bottom: 20px;"><b>VESTIMENTA</b></p>
+                <p style="margin-bottom: 12px;">• Tabla:</p>
+                <div class="tablita">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th (click)="ordenarTabla1('fecha_gasto')" style="cursor: pointer;">Fecha</th>
+                                <th (click)="ordenarTabla1('nombre_categoria')" style="cursor: pointer;">Nombre de Categoría</th>
+                                <th (click)="ordenarTabla1('nombre_gasto')" style="cursor: pointer;">Tipo de gasto</th>
+                                <th (click)="ordenarTabla1('descripcion_gasto')" style="cursor: pointer;">Descripción del gasto</th>
+                                <th>Cantidad</th>
+                                <th>Precio x unidad</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let gasto of gastos_filtrados">
+                                <td>{{ gasto.fecha_gasto }}</td>
+                                <td>{{ gasto.nombre_categoria }}</td>
+                                <td>{{ gasto.nombre_gasto }}</td>
+                                <td>{{ gasto.descripcion_gasto }}</td>
+                                <td>{{ gasto.cantidad }}</td>
+                                <td>{{ gasto.monto_gasto }}</td>
+                                <td>{{ gasto.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 20px; margin-bottom: 12px;">• Graficos:</p>
+                <div class="columnas" style="margin-left: 5px; margin-right: 5px;">
+                    <div class="col-50">
+                        <div class="circular" style="display: flex; justify-content: center;">
+                            <div style="text-align: center;">
+                                <canvas id="Vestimenta" width="300px" height="250px"></canvas>
+                            </div>
+                        </div>
+                        <div class="barras" style="display: flex; justify-content: center; margin-top: 40px;">
+                            <div style="text-align: center;">
+                                <canvas id="Vestimenta1" width="500" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <p>• Total gastado: S/. {{ datas[0] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Mayor gasto: {{ datas[1] }}</p>
+                        <p style="margin-left: 20px;">→ Mayor valor gastado: S/. {{ datas[2] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con mayor gasto: {{ datas[3] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Menor gasto: {{ datas[4] }}</p>
+                        <p style="margin-left: 20px;">→ Menor valor gastado: S/. {{ datas[5] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con menor gasto: {{ datas[6] }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto: S/. {{ datas[7] }}</p>
+                        <p style="margin-top: 10px;">• Gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n_p"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hoja hojaTransporte cerradoOPC">
+                <p style="margin-bottom: 20px;"><b>TRANSPORTE</b></p>
+                <p style="margin-bottom: 12px;">• Tabla:</p>
+                <div class="tablita">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th (click)="ordenarTabla1('fecha_gasto')" style="cursor: pointer;">Fecha</th>
+                                <th (click)="ordenarTabla1('nombre_categoria')" style="cursor: pointer;">Nombre de Categoría</th>
+                                <th (click)="ordenarTabla1('nombre_gasto')" style="cursor: pointer;">Tipo de gasto</th>
+                                <th (click)="ordenarTabla1('descripcion_gasto')" style="cursor: pointer;">Descripción del gasto</th>
+                                <th>Cantidad</th>
+                                <th>Precio x unidad</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let gasto of gastos_filtrados">
+                                <td>{{ gasto.fecha_gasto }}</td>
+                                <td>{{ gasto.nombre_categoria }}</td>
+                                <td>{{ gasto.nombre_gasto }}</td>
+                                <td>{{ gasto.descripcion_gasto }}</td>
+                                <td>{{ gasto.cantidad }}</td>
+                                <td>{{ gasto.monto_gasto }}</td>
+                                <td>{{ gasto.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 20px; margin-bottom: 12px;">• Graficos:</p>
+                <div class="columnas" style="margin-left: 5px; margin-right: 5px;">
+                    <div class="col-50">
+                        <div class="circular" style="display: flex; justify-content: center;">
+                            <div style="text-align: center;">
+                                <canvas id="Transporte" width="300px" height="250px"></canvas>
+                            </div>
+                        </div>
+                        <div class="barras" style="display: flex; justify-content: center; margin-top: 40px;">
+                            <div style="text-align: center;">
+                                <canvas id="Transporte1" width="500" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <p>• Total gastado: S/. {{ datas[0] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Mayor gasto: {{ datas[1] }}</p>
+                        <p style="margin-left: 20px;">→ Mayor valor gastado: S/. {{ datas[2] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con mayor gasto: {{ datas[3] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Menor gasto: {{ datas[4] }}</p>
+                        <p style="margin-left: 20px;">→ Menor valor gastado: S/. {{ datas[5] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con menor gasto: {{ datas[6] }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto: S/. {{ datas[7] }}</p>
+                        <p style="margin-top: 10px;">• Gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n_p"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hoja hojaOtros cerradoOPC">
+                <p style="margin-bottom: 20px;"><b>OTROS GASTOS</b></p>
+                <p style="margin-bottom: 12px;">• Tabla:</p>
+                <div class="tablita">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th (click)="ordenarTabla1('fecha_gasto')" style="cursor: pointer;">Fecha</th>
+                                <th (click)="ordenarTabla1('nombre_categoria')" style="cursor: pointer;">Nombre de Categoría</th>
+                                <th (click)="ordenarTabla1('nombre_gasto')" style="cursor: pointer;">Tipo de gasto</th>
+                                <th (click)="ordenarTabla1('descripcion_gasto')" style="cursor: pointer;">Descripción del gasto</th>
+                                <th>Cantidad</th>
+                                <th>Precio x unidad</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let gasto of gastos_filtrados">
+                                <td>{{ gasto.fecha_gasto }}</td>
+                                <td>{{ gasto.nombre_categoria }}</td>
+                                <td>{{ gasto.nombre_gasto }}</td>
+                                <td>{{ gasto.descripcion_gasto }}</td>
+                                <td>{{ gasto.cantidad }}</td>
+                                <td>{{ gasto.monto_gasto }}</td>
+                                <td>{{ gasto.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 20px; margin-bottom: 12px;">• Graficos:</p>
+                <div class="columnas" style="margin-left: 5px; margin-right: 5px;">
+                    <div class="col-50">
+                        <div class="circular" style="display: flex; justify-content: center;">
+                            <div style="text-align: center;">
+                                <canvas id="Otros" width="300px" height="250px"></canvas>
+                            </div>
+                        </div>
+                        <div class="barras" style="display: flex; justify-content: center; margin-top: 40px;">
+                            <div style="text-align: center;">
+                                <canvas id="Otros1" width="500" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <p>• Total gastado: S/. {{ datas[0] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Mayor gasto: {{ datas[1] }}</p>
+                        <p style="margin-left: 20px;">→ Mayor valor gastado: S/. {{ datas[2] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con mayor gasto: {{ datas[3] }}</p>
+                        <p style="margin-left: 10px; margin-top: 5px;">- Menor gasto: {{ datas[4] }}</p>
+                        <p style="margin-left: 20px;">→ Menor valor gastado: S/. {{ datas[5] }}</p>
+                        <p style="margin-left: 20px;">→ Fecha con menor gasto: {{ datas[6] }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto: S/. {{ datas[7] }}</p>
+                        <p style="margin-top: 10px;">• Gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                        <p style="margin-top: 10px;">• Promedio de gasto por tipo de gasto:</p>
+                        <p *ngFor="let gasto of datas_n_p"  style="margin-left: 10px;">- {{ gasto.tipo }}: S/. {{ gasto.gastoTotal }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hoja hojaVoz abiertoOPC">
+                <p>hojaRegistroVoz</p>
+            </div>
+            <div class="hoja hojaManual cerradoOPC">
+                <p>hojaRegistroManual</p>
+            </div>
+            <div class="hoja hojaDetallado cerradoOPC">
+                <p>hojaReporteDetallado</p>
+            </div>
+        </div>
+    </div>
+</div>

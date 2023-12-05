@@ -1,0 +1,4 @@
+- Inicializar el programa
+    1       ubicarse sobre la carpeta BanQ-Grupo5 con cd
+    2       npm install
+    3       ng serve
