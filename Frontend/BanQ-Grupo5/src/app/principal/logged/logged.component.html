@@ -72,12 +72,7 @@
                     <ion-icon name="mic-outline"></ion-icon>
                     <p>Registro por voz</p>
                 </div>
-                <div class="opcion" id="hojaManual">
-                    <ion-icon name="calculator-outline"></ion-icon>
-                    <p>Registro manual</p>
-                </div>
             </div>
-
             <div class="botonRep" (click)="abrirReportes()">
                 <div class="botonRep-01">
                     <p><b>Reportes</b></p>
@@ -804,10 +799,13 @@
                 </div>
             </div>
             <div class="hoja hojaVoz abiertoOPC">
-                <p>hojaRegistroVoz</p>
-            </div>
-            <div class="hoja hojaManual cerradoOPC">
-                <p>hojaRegistroManual</p>
+                <div class="imagen" style="display: flex; width: 100%; align-items: center; justify-content: center; margin-top: 120px;">
+                    <ion-icon name="mic-circle" style="cursor: pointer; margin: 10px 10px 0px 10px; color: brown; font-size: 14rem;"></ion-icon>
+                </div>
+                <div class="texto-imagen" style="display: flex; width: 100%; justify-content: center; margin-top: 30px;">
+                    <input type="text" id="texto_input" [(ngModel)]="texto_in" name="texto" placeholder="Texto reconocido" style="width: 50%;" required>
+                    <input type="submit" id="enviar_texto" value="Enviar" style="text-align: center; cursor: pointer;" (click)="enviarTexto(texto_in)">
+                </div>
             </div>
             <div class="hoja hojaDetallado cerradoOPC">
                 <p>hojaReporteDetallado</p>

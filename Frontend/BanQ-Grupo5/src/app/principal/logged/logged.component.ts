@@ -1,7 +1,9 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, SimpleChanges} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, SimpleChanges } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { Gasto } from '../../models/gasto';
 import { Chart } from 'chart.js/auto';
+import * as miJS from './logged.component.js';
 
 import { ConnBackendService } from '../../services/conn-backend.service';
 
@@ -13,12 +15,15 @@ import { ConnBackendService } from '../../services/conn-backend.service';
 export class LoggedComponent implements AfterViewInit {
   
   @Input() gastos_input!: Array<Gasto>;
+  @Input() id_usuario_input!: string;
   gastos_filtrados!: Array<Gasto>
   datas: Array<String> = ["0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00"];
   
   datas_n: Array<{tipo:string, gastoTotal:number}> = [];
   datas_n_p: Array<{tipo:string, gastoTotal:number}> = [];
   gastosPorTipo = new Map<string, number>();
+  voz_in: String = "<Texto reconocido>";
+  texto_in: String = "Agregar hamburguesa por diez soles a alimentos";
 
   opciones: NodeListOf<Element> | undefined;
 
@@ -475,5 +480,33 @@ export class LoggedComponent implements AfterViewInit {
         options: options1
       });
     }
+  }
+
+  async enviarTexto(texto: String){
+    if(await this.regGasto(texto, "10000")){
+      await this.getGastos();
+    }
+  }
+
+  async regGasto(texto: String, id:String){
+      try{
+        await this.connBackend.postRegistrarGasto(texto, id).toPromise();
+        alert('GASTO REGISTRADO');
+      } catch(error) {
+        console.error(error);
+        return false;
+      }
+      return true;
+  }
+
+  async getGastos(){
+    try{
+      const data = await this.connBackend.getGastos(this.id_usuario_input).toPromise();
+      console.log(data);
+      this.gastos_input = data.gastos;
+    } catch(error) {
+      console.error(error);
+    }
+    this.ordenarTabla('fecha_gasto');
   }
 }

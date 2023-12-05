@@ -45,4 +45,12 @@ export class ConnBackendService {
     }
     return this.http.post(`${this.BASE_URL}/registrarUsuario`, data);
   }
+
+  postRegistrarGasto(mensaje:String, id:String):Observable<any>{
+    const data = {
+      mensaje: mensaje,
+      id_usuario: id
+    }
+    return this.http.post(`${this.BASE_URL}/registrarGasto`, data);
+  }
 }
