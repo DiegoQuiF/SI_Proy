@@ -66,7 +66,7 @@ def registrarCorreo():
         nombre = data['nombre_correo']
         id = data['id_correo']
         contra = data['contra_correo']
-        if(postRegistrarCorreo(nombre, id, contra)):
+        if(postRegistrarCorreo(str(nombre), str(id), str(contra))):
             return jsonify({'message': data, 'success':True})
         else:
             return jsonify({'message':"NOT FOUND", 'success':True})
@@ -82,7 +82,7 @@ def registrarUsuario():
         materno = data['materno_usuario']
         id = data['id_correo_usuario']
         celular = data['celular_usuario']
-        if(postRegistrarUsuario(nombre, paterno, materno, id, celular)):
+        if(postRegistrarUsuario(str(nombre), str(paterno), str(materno), str(id), str(celular))):
             return jsonify({'message': data, 'success':True})
         else:
             return jsonify({'message':"NOT FOUND", 'success':True})

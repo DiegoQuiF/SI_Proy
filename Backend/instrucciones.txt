@@ -2,5 +2,8 @@
     1       virtualenv venv                 (Requiere configuración de variable de entorno del sistema para usar el comando)
     2       .\venv\Scripts\activate
     3       pip install -r requirements.txt         (Requiere configuración de variable de entorno del sistema para usar el comando)
+    4       "SE DEBEN CAMBIAR LAS CREDENCIALES DE LA BD EN EL ARCHIVO Config.py", "EL SCRIPTV2 ES PARA POSTGRESQL"
+    5       py app.py
+
 - Adicionales
     1       pip freeze > requirements.txt         (Requiere configuración de variable de entorno del sistema para usar el comando)

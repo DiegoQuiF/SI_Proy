@@ -483,7 +483,7 @@ export class LoggedComponent implements AfterViewInit {
   }
 
   async enviarTexto(texto: String){
-    if(await this.regGasto(texto, "10000")){
+    if(await this.regGasto(texto, this.id_usuario_input)){
       await this.getGastos();
     }
   }
