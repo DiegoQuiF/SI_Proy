@@ -1,6 +1,6 @@
 - Inicializar el programa
-    1       virtualenv venv
+    1       virtualenv venv                 (Requiere configuración de variable de entorno del sistema para usar el comando)
     2       .\venv\Scripts\activate
-    3       pip install -r requirements.txt
+    3       pip install -r requirements.txt         (Requiere configuración de variable de entorno del sistema para usar el comando)
 - Adicionales
-    1       pip freeze > requirements.txt       (Guardar instalaciones)
+    1       pip freeze > requirements.txt         (Requiere configuración de variable de entorno del sistema para usar el comando)

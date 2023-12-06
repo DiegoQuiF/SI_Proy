@@ -102,8 +102,8 @@ def registrarGasto():
         # [2] → cantidad
         # [3] → descripcion
         datos = Procesador(mensaje).procesar()
-        datos = ["1002", "5.00", "2", "donas"]
-        if(postRegistrarGasto(datos[0], id_user, datos[1], datos[2], fecha, datos[3])):
+
+        if(postRegistrarGasto(str(datos["id_tipo_gasto"]), id_user, str(datos["monto_gasto"]), str(datos["cantidad"]), fecha, str(datos["descripcion"]))):
             return jsonify({'message': data, 'success':True})
         else:
             return jsonify({'message':"NOT FOUND", 'success':True})

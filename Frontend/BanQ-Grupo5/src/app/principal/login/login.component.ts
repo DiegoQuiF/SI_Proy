@@ -16,8 +16,8 @@ export class LoginComponent {
 
   constructor(private connBackend: ConnBackendService) { }
   
-  correo: string = 'diegoQF@gmail.com';
-  contra: string = 'diego123';
+  correo: string = '';
+  contra: string = '';
 
   usuarioArray: Array<Usuario> = new Array<Usuario>();
 

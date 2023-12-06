@@ -509,4 +509,25 @@ export class LoggedComponent implements AfterViewInit {
     }
     this.ordenarTabla('fecha_gasto');
   }
+
+  gastofil(deseo: string){
+    let gastos_fil!: Array<Gasto>
+    switch(deseo) {
+      case '0': deseo = 'Alimentacion'; break;
+      case '1': deseo = 'Comunicacion'; break;
+      case '2': deseo = 'Deudas'; break;
+      case '3': deseo = 'Educacion'; break;
+      case '4': deseo = 'Entretenimiento'; break;
+      case '5': deseo = 'Ingresos varios'; break;
+      case '6': deseo = 'Salud'; break;
+      case '7': deseo = 'Transporte'; break;
+      case '8': deseo = 'Vestimenta'; break;
+      case '9': deseo = 'Vivienda'; break;
+      case '10': deseo = 'Otros'; break;
+      default: deseo = "Todo"; break;
+    }
+
+
+    return gastos_fil
+  }
 }

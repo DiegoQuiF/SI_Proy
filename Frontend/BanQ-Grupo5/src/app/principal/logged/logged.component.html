@@ -84,7 +84,7 @@
             <div class="contenidoRep abiertoRep-02" id="contenidoRep-01">
                 <div class="opcion" id="hojaDetallado">
                     <ion-icon name="document-text-outline"></ion-icon>
-                    <p>Reporte detallado</p>
+                    <p>Reporte completo de gastos</p>
                 </div>
             </div>
         </div>
@@ -808,7 +808,33 @@
                 </div>
             </div>
             <div class="hoja hojaDetallado cerradoOPC">
-                <p>hojaReporteDetallado</p>
+                <p><b>REPORTE DE GASTOS</b></p>
+                <div class="tablita1" style="margin-top: 20px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th (click)="ordenarTabla('fecha_gasto')" style="cursor: pointer;">Fecha</th>
+                                <th (click)="ordenarTabla('nombre_categoria')" style="cursor: pointer;">Nombre de Categoría</th>
+                                <th (click)="ordenarTabla('nombre_gasto')" style="cursor: pointer;">Tipo de gasto</th>
+                                <th (click)="ordenarTabla('descripcion_gasto')" style="cursor: pointer;">Descripción del gasto</th>
+                                <th>Cantidad</th>
+                                <th>Precio x unidad</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let gasto of gastos_input">
+                                <td>{{ gasto.fecha_gasto }}</td>
+                                <td>{{ gasto.nombre_categoria }}</td>
+                                <td>{{ gasto.nombre_gasto }}</td>
+                                <td>{{ gasto.descripcion_gasto }}</td>
+                                <td>{{ gasto.cantidad }}</td>
+                                <td>{{ gasto.monto_gasto }}</td>
+                                <td>{{ gasto.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
